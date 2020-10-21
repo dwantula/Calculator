@@ -6,7 +6,8 @@ class ButtonComponent extends PureComponent {
     return (
       <button
         className={this.props.className}
-        onClick={this.props.onClick}>
+        onClick={this.props.onClick}
+        type="submit">
         {this.props.text}
       </button>
     )
