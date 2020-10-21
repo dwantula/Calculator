@@ -5,7 +5,7 @@ class ButtonComponent extends PureComponent {
   render() {
     return (
       <button
-        className={this.props.className}
+        className={`button ${this.props.className}`}
         onClick={this.props.onClick}
         type="submit">
         {this.props.text}
