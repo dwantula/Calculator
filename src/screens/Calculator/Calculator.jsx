@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import ButtonComponent from '../../shared/components/Button/Button';
+import ClearButtonComponent from '../../shared/components/ClearButton/ClearButton';
 import DisplayComponent from '../../shared/components/Display/Display';
 import './styles.scss';
 
@@ -7,92 +8,114 @@ class CalculatorComponent extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      result: '111',
-    }
-    this.onInputChange = this.onInputChange.bind(this);
-    this.clearDisplay = this.clearDisplay.bind(this);
-  }
+      result: '',
+    };
+  };
 
-  onInputChange(value) {
+  onDisplayChange = value => {
     this.setState({ result: value });
   }
 
-  clearDisplay() {
-    this.setState({ result: [] });
+  clearDisplay = () => {
+    this.setState({ result: '' });
   }
+
+  addToDisplay = val => {
+    this.setState({ result: this.state.result + val });
+  };
+
+  handleEqual = () => {
+    this.setState({ result: eval(this.state.result) });
+  };
 
   render() {
     return (
       <div className="card">
-        <header className= "title">
+        <header className="title">
           <h2>Calculator</h2>
         </header>
           <main>
-            <ButtonComponent
-              className="clear-button"
-              text="C"
-              onClick={this.clearDisplay}
-            />
+            <ClearButtonComponent
+             className="clear-button"
+             handleClear={this.clearDisplay}>
+              C
+            </ClearButtonComponent>   
             <DisplayComponent
+              onChange={this.onDisplayChange}
               value={this.state.result} 
-              onChange={this.onInputChange}
-            />
-            <ButtonComponent
-              text="7"
-            />
-            <ButtonComponent
-              text="8"
-            />
-            <ButtonComponent
-              text="9"
-            />
-            <ButtonComponent
-              className="function-button"
-              text="/"
-            />
-            <ButtonComponent
-              text="4"
-            />
-            <ButtonComponent
-              text="5"
             />
             <ButtonComponent 
-              text="6"
-            />
-            <ButtonComponent
-              className="function-button"
-              text="*"
-            />
-            <ButtonComponent
-              text="1"
-            />
-            <ButtonComponent
-              text="2"
-            />
-            <ButtonComponent
-              text="3"
-            />
-            <ButtonComponent
-              className="function-button"
-              text="-"
-            />
-            <ButtonComponent
-              text="0"
-            />
-            <ButtonComponent
-              text="."
-            />
-            <ButtonComponent
-              className="result-button"
-              text="="
-            />
-            <ButtonComponent
-              className="function-button"
-              text="+"
-            />
+              handleClick={this.addToDisplay}>
+              7
+            </ButtonComponent>
+            <ButtonComponent 
+              handleClick={this.addToDisplay}>
+              8
+            </ButtonComponent>  
+            <ButtonComponent 
+              handleClick={this.addToDisplay}>
+              9
+            </ButtonComponent>
+            <ButtonComponent 
+              handleClick={this.addToDisplay}
+              className="function-button">
+              /
+            </ButtonComponent>
+            <ButtonComponent 
+              handleClick={this.addToDisplay}>
+              4
+            </ButtonComponent>
+            <ButtonComponent 
+              handleClick={this.addToDisplay}>
+              5
+            </ButtonComponent>
+            <ButtonComponent 
+              handleClick={this.addToDisplay}>
+              6
+            </ButtonComponent>
+            <ButtonComponent 
+              handleClick={this.addToDisplay}
+              className="function-button">
+              *
+            </ButtonComponent>
+            <ButtonComponent 
+              handleClick={this.addToDisplay}>
+              1
+            </ButtonComponent>
+            <ButtonComponent 
+              handleClick={this.addToDisplay}>
+              2
+            </ButtonComponent>
+            <ButtonComponent 
+              handleClick={this.addToDisplay}>
+              3
+            </ButtonComponent>
+            <ButtonComponent 
+              handleClick={this.addToDisplay}
+              className="function-button">
+              -
+            </ButtonComponent>
+            <ButtonComponent 
+              handleClick={this.addToDisplay}>
+              0
+            </ButtonComponent>
+            <ButtonComponent 
+              handleClick={this.addToDisplay}>
+              .
+            </ButtonComponent>
+            <ButtonComponent 
+              handleClick={this.handleEqual}
+              className="result-button">
+              =
+            </ButtonComponent>
+            <ButtonComponent 
+              handleClick={this.addToDisplay}
+              className="function-button">
+              +
+            </ButtonComponent>
           </main>
       </div>
     )
   }
 }
-export default CalculatorComponent
+export default CalculatorComponent;
