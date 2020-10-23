@@ -1,11 +1,17 @@
+@import './../../main-styles.scss';
+
 .display {
   margin-top: 2px;
-  width: 186px;
-  height: 58px;
-  border: 1px solid gray;
-  font-size: 25px;
+  width: 184px;
+  height: 56px;
+  border: 2px solid gray;
+  font-size: 20px;
   margin-left: 2px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  outline: 0;
+  border-radius: 8px;
+  color: $display-numbers-color;
+  background-color: $bg-display-color;
 }

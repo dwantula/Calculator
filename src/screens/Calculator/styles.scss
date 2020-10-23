@@ -1,3 +1,5 @@
+@import './../../shared/main-styles.scss';
+
 .card {
   border: 2px solid gray;
   display: flex;
@@ -7,19 +9,20 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 100px;
-  box-shadow: 1px 1px 3px 3px gray;
+  box-shadow: 1px 4px 4px 1px gray;
   border-radius: 8px;
+  background-color:$bg-card-color;
 }
 
 .title {
   text-align: center;
   letter-spacing: 2px;
-  color: white;
+  color: $title-text-color;
   border-radius: 8px;
   font-size: 20px;
   margin-bottom: 20px;
   background: rgb(136,136,136);
-  background: radial-gradient(circle, rgba(136,136,136,0.9699230033810399) 0%, rgba(255,255,255,1) 100%);
+  background: $bg-title-color;
 }
 
 main {
@@ -30,15 +33,11 @@ main {
 }
 
 .function-button {
-  color: white;
-  font-size: 25px;
-  background-color: lightgray;
+  @include function-button-styles;
 }
 
 .result-button {
-  background-color: lightgreen;
-  color: white;
-  font-size: 25px;
+  @include function-button-styles;
 }
 
 

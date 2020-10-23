@@ -1,8 +1,7 @@
+@import './../../main-styles.scss';
+
 .clear-button {
-  color: white;
+  color: white; 
   background-color: red;
-  width: 60px;
-  height: 60px;
-  margin: 2px 2px;
-  font-size: 25px;
-}
+  @include size-button-box;
+ }

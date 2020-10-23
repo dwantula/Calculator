@@ -8,24 +8,24 @@ class CalculatorComponent extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      result: '',
+      display: '',
     };
   };
 
   onDisplayChange = value => {
-    this.setState({ result: value });
+    this.setState({ display: value });
   }
 
   clearDisplay = () => {
-    this.setState({ result: '' });
+    this.setState({ display: '' });
   }
 
   addToDisplay = val => {
-    this.setState({ result: this.state.result + val });
+    this.setState({ display: this.state.display + val });
   };
 
   handleEqual = () => {
-    this.setState({ result: eval(this.state.result) });
+    this.setState({ display: eval(this.state.display) });
   };
 
   render() {
@@ -42,7 +42,7 @@ class CalculatorComponent extends PureComponent {
             </ClearButtonComponent>   
             <DisplayComponent
               onChange={this.onDisplayChange}
-              value={this.state.result} 
+              value={this.state.display} 
             />
             <ButtonComponent 
               handleClick={this.addToDisplay}>

@@ -1,0 +1,22 @@
+$bg-Button-Colors: white;
+$display-numbers-color: black;
+$bg-display-color: white;
+$bg-title-color: radial-gradient(circle, rgba(136,136,136,0.9699230033810399) 0%, rgba(255,255,255,1) 100%);
+$title-text-color: white;
+$bg-card-color: white;
+
+@mixin function-button-styles{
+  color: white;
+  font-size: 25px;
+  background-color: lightgray;
+}
+
+@mixin size-button-box {
+  width: 60px;
+  height: 60px;
+  margin: 2px 2px;
+  font-size: 20px;
+  border-radius: 8px;
+  outline: 0;
+  cursor: pointer;
+}
