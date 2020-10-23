@@ -1,16 +1,15 @@
 import React  from 'react';
 import './styles.scss';
 
-function ButtonComponent(props) {
+function ButtonComponent({ className, type, onClick, text }) {
   return (
-    <div>
-      <button
-        className={`button ${props.className}`}
-        onClick={() => props.handleClick(props.children)}
-        type="button">
-        {props.children}
-      </button>
-    </div>
+    <button
+      className={`button ${className}`}
+      onClick={onClick}
+      type={type}
+      >
+        {text}
+    </button>
   )
 }
 

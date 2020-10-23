@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import ButtonComponent from '../../shared/components/Button/Button';
-import ClearButtonComponent from '../../shared/components/ClearButton/ClearButton';
+// import ClearButtonComponent from '../../shared/components/ClearButton/ClearButton';
 import DisplayComponent from '../../shared/components/Display/Display';
+import CalculatorKey, { keyTypes } from './CalculatorKey/CalculatorKey';
 import './styles.scss';
 
 class CalculatorComponent extends PureComponent {
@@ -12,21 +13,39 @@ class CalculatorComponent extends PureComponent {
     };
   };
 
-  onDisplayChange = value => {
-    this.setState({ result: value });
-  }
-
   clearDisplay = () => {
     this.setState({ result: '' });
   }
 
   addToDisplay = val => {
-    this.setState({ result: this.state.result + val });
+    this.setState(prevState => ({
+      result: prevState.result + val
+    }));
   };
 
   handleEqual = () => {
     this.setState({ result: eval(this.state.result) });
   };
+
+  calculatorKeys = [
+    { value: 'C', type: keyTypes.clear,action: this.clearDisplay },
+    { value: 7, action: this.addToDisplay },
+    { value: 8, action: () => {} },
+    { value: 9, action: () => {} },
+    { value: '/', action: () => {} },
+    { value: 6, action: () => {} },
+    { value: 5, action: () => {} },
+    { value: 4, action: () => {} },
+    { value: '*', action: () => {} },
+    { value: 3, action: () => {} },
+    { value: 2, action: () => {} },
+    { value: 1, action: () => {} },
+    { value: '-', action: () => {} },
+    { value: 0, action: () => {} },
+    { value: '.', action: () => {} },
+    { value: '=', action: () => {} },
+    { value: '+', action: () => {} },
+  ]
 
   render() {
     return (
@@ -35,84 +54,88 @@ class CalculatorComponent extends PureComponent {
           <h2>Calculator</h2>
         </header>
           <main>
-            <ClearButtonComponent
+            {/* <ClearButtonComponent
              className="clear-button"
              handleClear={this.clearDisplay}>
               C
-            </ClearButtonComponent>   
+            </ClearButtonComponent> */}
             <DisplayComponent
-              onChange={this.onDisplayChange}
-              value={this.state.result} 
+              value={this.state.result}
             />
-            <ButtonComponent 
-              handleClick={this.addToDisplay}>
-              7
-            </ButtonComponent>
-            <ButtonComponent 
+            {
+              this.calculatorKeys.map(({ value, type, action }) => (
+                <CalculatorKey
+                  value={value}
+                  type={type}
+                  onPressed={action}
+                />
+              ))
+            }
+            {/* <ButtonComponent
               handleClick={this.addToDisplay}>
               8
-            </ButtonComponent>  
-            <ButtonComponent 
+            </ButtonComponent>
+            <ButtonComponent
               handleClick={this.addToDisplay}>
               9
             </ButtonComponent>
-            <ButtonComponent 
+            <ButtonComponent
               handleClick={this.addToDisplay}
               className="function-button">
               /
             </ButtonComponent>
-            <ButtonComponent 
+            <ButtonComponent
               handleClick={this.addToDisplay}>
               4
             </ButtonComponent>
-            <ButtonComponent 
+            <ButtonComponent
               handleClick={this.addToDisplay}>
               5
             </ButtonComponent>
-            <ButtonComponent 
+            <ButtonComponent
               handleClick={this.addToDisplay}>
               6
             </ButtonComponent>
-            <ButtonComponent 
+            <ButtonComponent
               handleClick={this.addToDisplay}
               className="function-button">
               *
             </ButtonComponent>
-            <ButtonComponent 
+            <ButtonComponent
               handleClick={this.addToDisplay}>
               1
             </ButtonComponent>
-            <ButtonComponent 
+            <ButtonComponent
               handleClick={this.addToDisplay}>
               2
             </ButtonComponent>
-            <ButtonComponent 
+            <ButtonComponent
               handleClick={this.addToDisplay}>
               3
             </ButtonComponent>
-            <ButtonComponent 
+            <ButtonComponent
               handleClick={this.addToDisplay}
               className="function-button">
               -
             </ButtonComponent>
-            <ButtonComponent 
+            <ButtonComponent
               handleClick={this.addToDisplay}>
               0
             </ButtonComponent>
-            <ButtonComponent 
+            <ButtonComponent
               handleClick={this.addToDisplay}>
               .
             </ButtonComponent>
-            <ButtonComponent 
+            <ButtonComponent
               handleClick={this.handleEqual}
               className="result-button">
               =
             </ButtonComponent>
-            <ButtonComponent 
+            <ButtonComponent
               handleClick={this.addToDisplay}
               className="function-button">
               +
-            </ButtonComponent>
+            </ButtonComponent> */}
           </main>
       </div>
     )
