@@ -1,13 +1,11 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import './styles.scss';
 
-class DisplayComponent extends PureComponent {
-  render() {
-    return (
-      <div className="display">
-        <p>{this.props.value}</p>
-      </div>
-    )
-  }
+function DisplayComponent({ value }){
+  return (
+    <div className="display">
+      <p>{value}</p>
+    </div>
+  )
 }
 export default DisplayComponent;

@@ -1,9 +1,12 @@
 $bg-Button-Colors: white;
+$bg-button-operator-color: lightgray;
+$bg-button-clear-color: red;
 $display-numbers-color: black;
 $bg-display-color: white;
 $bg-title-color: radial-gradient(circle, rgba(136,136,136,0.9699230033810399) 0%, rgba(255,255,255,1) 100%);
 $title-text-color: white;
 $bg-card-color: white;
+$bg-button-equal-color: lightgreen;
 
 @mixin function-button-styles{
   color: white;

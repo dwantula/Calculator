@@ -1,0 +1,22 @@
+@import './../../../shared/main-styles.scss';
+
+.operator-key {
+  color: white;
+  font-size: 25px;
+  background-color:$bg-button-operator-color;
+}
+
+.result-key {
+  background-color: $bg-button-equal-color;
+  color: white;
+  font-size: 25px;
+}
+
+.clear-key {
+  color: white;
+  background-color: $bg-button-clear-color;
+  width: 60px;
+  height: 60px;
+  margin: 2px 2px;
+  font-size: 25px;
+}

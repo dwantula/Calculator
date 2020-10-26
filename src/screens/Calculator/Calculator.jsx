@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
-import ButtonComponent from '../../shared/components/Button/Button';
-import ClearButtonComponent from '../../shared/components/ClearButton/ClearButton';
+import CalculatorKey, { keyTypes } from './CalculatorKey/CalculatorKey';
 import DisplayComponent from '../../shared/components/Display/Display';
 import './styles.scss';
+
 
 class CalculatorComponent extends PureComponent {
   constructor(props) {
@@ -12,21 +12,55 @@ class CalculatorComponent extends PureComponent {
     };
   };
 
-  onDisplayChange = value => {
-    this.setState({ display: value });
-  }
-
   clearDisplay = () => {
     this.setState({ display: '' });
   }
 
   addToDisplay = val => {
-    this.setState({ display: this.state.display + val });
+    this.setState(prevState => ({
+    display: prevState.display + val
+  }));
   };
 
   handleEqual = () => {
-    this.setState({ display: eval(this.state.display) });
+    this.setState(prevState => ({
+      display : eval(prevState.display) 
+    }));
   };
+
+  // changeOfOperator = () => {
+  //   const lastElem = this.state.display.slice(-1);
+  //   (lastElem === '-', '+', '/', '*') ? alert('error') : this.state.display;
+    
+
+  // }
+
+  changeOfOperator = () => {
+    const lastElem = this.state.display.slice(-1);
+    (3 === 3) ? console.log('aaaaa') : this.handleEqual;
+    
+  }
+  
+
+  calculatorKeys = [
+    { value: 'C', type: keyTypes.clear,action: this.clearDisplay },
+    { value: 7, action: this.addToDisplay },
+    { value: 8, action: this.addToDisplay },
+    { value: 9, action: this.addToDisplay },
+    { value: '/', type: keyTypes.operator, action: this.addToDisplay },
+    { value: 6, action: this.addToDisplay },
+    { value: 5, action: this.addToDisplay },
+    { value: 4, action: this.addToDisplay },
+    { value: '*', type: keyTypes.operator, action: this.addToDisplay },
+    { value: 3, action: this.addToDisplay },
+    { value: 2, action: this.addToDisplay },
+    { value: 1, action: this.addToDisplay },
+    { value: '-', type: keyTypes.operator, action: this.addToDisplay },
+    { value: 0, action: this.addToDisplay },
+    { value: '.', action: this.addToDisplay },
+    { value: '=', type: keyTypes.result ,action: this.changeOfOperator },
+    { value: '+', type:keyTypes.operator, action: this.addToDisplay },
+  ]
 
   render() {
     return (
@@ -35,84 +69,18 @@ class CalculatorComponent extends PureComponent {
           <h2>Calculator</h2>
         </header>
           <main>
-            <ClearButtonComponent
-             className="clear-button"
-             handleClear={this.clearDisplay}>
-              C
-            </ClearButtonComponent>   
             <DisplayComponent
-              onChange={this.onDisplayChange}
-              value={this.state.display} 
+               value={this.state.display}
             />
-            <ButtonComponent 
-              handleClick={this.addToDisplay}>
-              7
-            </ButtonComponent>
-            <ButtonComponent 
-              handleClick={this.addToDisplay}>
-              8
-            </ButtonComponent>  
-            <ButtonComponent 
-              handleClick={this.addToDisplay}>
-              9
-            </ButtonComponent>
-            <ButtonComponent 
-              handleClick={this.addToDisplay}
-              className="function-button">
-              /
-            </ButtonComponent>
-            <ButtonComponent 
-              handleClick={this.addToDisplay}>
-              4
-            </ButtonComponent>
-            <ButtonComponent 
-              handleClick={this.addToDisplay}>
-              5
-            </ButtonComponent>
-            <ButtonComponent 
-              handleClick={this.addToDisplay}>
-              6
-            </ButtonComponent>
-            <ButtonComponent 
-              handleClick={this.addToDisplay}
-              className="function-button">
-              *
-            </ButtonComponent>
-            <ButtonComponent 
-              handleClick={this.addToDisplay}>
-              1
-            </ButtonComponent>
-            <ButtonComponent 
-              handleClick={this.addToDisplay}>
-              2
-            </ButtonComponent>
-            <ButtonComponent 
-              handleClick={this.addToDisplay}>
-              3
-            </ButtonComponent>
-            <ButtonComponent 
-              handleClick={this.addToDisplay}
-              className="function-button">
-              -
-            </ButtonComponent>
-            <ButtonComponent 
-              handleClick={this.addToDisplay}>
-              0
-            </ButtonComponent>
-            <ButtonComponent 
-              handleClick={this.addToDisplay}>
-              .
-            </ButtonComponent>
-            <ButtonComponent 
-              handleClick={this.handleEqual}
-              className="result-button">
-              =
-            </ButtonComponent>
-            <ButtonComponent 
-              handleClick={this.addToDisplay}
-              className="function-button">
-              +
-            </ButtonComponent>
+            {
+              this.calculatorKeys.map(({ value, type, action }) => (
+                <CalculatorKey
+                  value={value}
+                  type={type}
+                  onPressed={action}
+                />
+              ))
+            }
           </main>
       </div>
     )
