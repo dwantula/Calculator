@@ -7,14 +7,15 @@ $bg-title-color: radial-gradient(circle, rgba(136,136,136,0.9699230033810399) 0%
 $title-text-color: white;
 $bg-card-color: white;
 $bg-button-equal-color: lightgreen;
+$border-display: gray;
+$button-function-text-color: white;
 
-@mixin function-button-styles{
-  color: white;
+@mixin function-button-styles {
+  color: $button-function-text-color;
   font-size: 25px;
-  background-color: lightgray;
 }
 
-@mixin size-button-box {
+@mixin button-box {
   width: 60px;
   height: 60px;
   margin: 2px 2px;

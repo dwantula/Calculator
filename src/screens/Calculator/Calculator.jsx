@@ -22,7 +22,7 @@ class CalculatorComponent extends PureComponent {
 
   checkLastElementOnDisplay = () => {
     const lastElem = this.state.display.slice(-1);
-    return this.isOperator(lastElem);
+    return this.isOperator(lastElem) 
   };
 
   addNewElement = val => {
@@ -42,24 +42,19 @@ class CalculatorComponent extends PureComponent {
   addToDisplay = (val) => {
     // this.checkLastElementOnDisplay() ? this.replaceLastElement(val) : this.addNewElement(val)
     if (this.isOperator(val)) {
-      this.checkLastElementOnDisplay(val) ? this.replaceLastElement(val) : this.addNewElement(val)
+      this.checkLastElementOnDisplay(val) ? this.replaceLastElement(val) : this.addNewElement(val);
     } else {
-        this.addNewElement(val)
-    }
-  }
+        this.addNewElement(val);
+    };
+  };
 
-    handleEqual = () => {
-    const display = this.state.display;
-    const lastElem = display.slice(-1);
-    const operators = ['+', '-', '*', '/'];
-    if (operators.includes(lastElem) || display.length === 1) {
-      console.log('')
-    } else {
-        this.setState(prevState => ({
-          display : eval(prevState.display) 
-        }))
-    }
-  }
+  handleEqual = (val) => {
+    if (!this.checkLastElementOnDisplay(val) && this.state.display.length > 2) {
+      this.setState(prevState => ({
+        display : eval(prevState.display) + ''
+      }));
+    }; 
+  };
   
   calculatorKeys = [
     { value: 'C', type: keyTypes.clear, action: this.clearDisplay },
@@ -79,7 +74,7 @@ class CalculatorComponent extends PureComponent {
     { value: '.', action: this.addToDisplay },
     { value: '=', type: keyTypes.result, action: this.handleEqual },
     { value: '+', type: keyTypes.operator, action: this.addToDisplay },
-  ]
+  ];
 
   render() {
     return (
@@ -87,7 +82,7 @@ class CalculatorComponent extends PureComponent {
         <header className="title">
           <h2>Calculator</h2>
         </header>
-          <main>
+          <main className="main">
             <DisplayComponent
                value={this.state.display}
             />
